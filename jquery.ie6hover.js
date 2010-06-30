@@ -52,6 +52,7 @@ for (i = 0, slen = sheets.length; i < slen; i++) {
         selectors[0].push(text.replace(check_erase, ''));
 
         // Rename class or id (if existing) by adding -hover-ie6
+	idorclass.lastIndex = 0;
         if (idorclass.test(text)) {
           idorclass.lastIndex = 0;
           selectors[1].push(idorclass.exec(text)[1].replace('.','').replace('#','')+'-'+klass);
@@ -64,6 +65,7 @@ for (i = 0, slen = sheets.length; i < slen; i++) {
         }
 
         // New CSS rule should be added at the same place as the existing rule to keep inheritance working
+	alert('ruladd '+text);
         sheet.addRule(text, rule.style.cssText, j);
         // Increase the counters due to the new rule being inserted
         j++;

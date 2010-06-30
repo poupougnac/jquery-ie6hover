@@ -4,9 +4,8 @@ jQuery IE6 CSS :hover support
 This plugin scans through all CSS stylesheets and finds `:hover` pseudo-selectors, then adds the appropriate event handlers to make the CSS work in Internet Explorer 6.
 
 You can use this kind of selectors:
-div.mydiv:hover 
-div.mydiv:hover a.mylink
-//etc
+div.mydiv:hover ,
+div.mydiv:hover a.mylink, and both in the same time
 
 
 The function takes an optional boolean parameter, which if true will use `live()` instead of `bind()` to make sure all future dynamically-generated elements on a page are supported by the fix.
