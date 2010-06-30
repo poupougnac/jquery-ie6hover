@@ -4,25 +4,27 @@
 	<title>jQuery IE6 hover plugin tests</title>
 	<link rel="stylesheet" type="text/css" href="http://assets3.github.com/stylesheets/bundle_github.css" />
 	<style type="text/css">
-		.container, ul, li, a {display:block;margin:0;padding:20px;}
-		.container {background-color:#00F;}
-		.container:hover {background-color:#99F;}
-		ul {background-color:#0F0;}
-		.container ul:hover {background-color:#9F9;}
-		li {background-color:#F00;}
-		.container:hover ul li {background-color:#F99;}
 		a {background-color:#FF0;}
-		a:hover {background-color:#FF9;}
+		a:hover {background-color:#d5d5d5 !important;}
+		.container,li,ul {display:block;margin:0;padding:20px;}
+		.container:hover {background-color:#99F;}
+		ul.ulclass {border:1px dashed red;}
+		ul.ulclass:hover li {background-color:red;}
+		li {border:1px solid blue;}
+		li:hover a {background-color:green;}
+		
 	</style>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.3.min.js"></script>
-	<script type="text/javascript" src="jquery.ie6hover.min.js"></script>
-	<!--<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>-->
+	<script type="text/javascript" src="aust.js"></script>
 </head>
 <body>
-	<div class="container">
-		<ul>
-			<li>
-				<a href="#">This is a link</a>
+	<div class="container">The div.container
+		<ul class="ulclass">UL.ulclass
+			<li>LI (I'm red when you're hovering my UL container)<br/>
+				<a href="#">I'm a link with one color by hovering my container, and an other one by hovering me </a>
+			</li>
+			<li>LI
+				<a href="#">This is a second link</a>
 			</li>
 		</ul>
 	</div>
@@ -34,3 +36,4 @@
 	</script>
 </body>
 </html>
+
