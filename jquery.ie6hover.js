@@ -10,17 +10,13 @@
  */
 (function($){
  $.extend({
-ie6hover: function (future) {
+ie6hover: function () {
 // $.browser is deprecated, but there's no way to feature detect :hover support
 if (!$.browser.msie || $.browser.version != '6.0') {
 return;
 }
 var klass = 'hover-ie6',
-func = future === true ? 'live' : 'bind',
-// jQuery < 1.4 can't handle 'mouseenter' and 'mouseleave' in live events
 is14 = /^1\.[4-9]/.test($.fn.jquery),
-overEvent = is14 || !future ? 'mouseenter' : 'mouseover',
-outEvent = is14 || !future ? 'mouseleave' : 'mouseout',
 sheets = document.styleSheets,
 check = /:hover\b/g,
 check_erase = /:hover\b(.)*/g,
@@ -30,6 +26,10 @@ selectors = [],
 i, j, len, slen, sheet, rules, rule, text;
 selectors[0] = []; //selectors
 selectors[1] = []; //hovered class
+ if (!is14) {
+    alert('jQuery 1.4 or ulterior is required for ie6hover to work');
+    return;
+ }
  if (!sheets.length) {
    return;
  }
@@ -65,7 +65,6 @@ for (i = 0, slen = sheets.length; i < slen; i++) {
         }
 
         // New CSS rule should be added at the same place as the existing rule to keep inheritance working
-	alert('ruladd '+text);
         sheet.addRule(text, rule.style.cssText, j);
         // Increase the counters due to the new rule being inserted
         j++;
@@ -100,11 +99,11 @@ if (selectors[0].length) {
 
       for (var zzeclass, i=0; i<selectors[0].length; i++) {
       zzeclass=selectors[1][i];
-      $(selectors[0][i])[func](overEvent, {zeclass:zzeclass},
+      $(selectors[0][i]).live('mouseenter', {zeclass:zzeclass},
         function (e) {
         $(this).addClass(e.data.zeclass);
         });
-      $(selectors[0][i])[func](outEvent, {zeclass:zzeclass},
+      $(selectors[0][i]).live('mouseleave', {zeclass:zzeclass},
         function (e) {
         $(this).removeClass(e.data.zeclass);
         });
